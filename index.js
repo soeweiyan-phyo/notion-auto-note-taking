@@ -1,6 +1,4 @@
-const axios = require("axios");
 const { Client } = require("@notionhq/client");
-const { Configuration, OpenAI } = require("openai");
 
 require("dotenv").config();
 
@@ -11,19 +9,3 @@ const getNotionDB = async () => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   console.log(response);
 };
-
-const configuration = {
-  apiKey: process.env.OPENAI_API_KEY,
-};
-
-const openai = new OpenAI(configuration);
-
-async function chat() {
-  const chatCompletion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: "What is Node.js?" }],
-  });
-  console.log(chatCompletion);
-}
-
-chat();
